@@ -49,15 +49,17 @@ export default function Quiz() {
         }
     };
     const handleOptionSelect = (option) => {
+        
         setSelectedOption(option);
         const isCorrect = option === quizes[index].correct_answer;
         setFeedback(isCorrect ? 'Correct!' : 'Incorrect');
+        
     };
 
     return (
         <Box>
             <Flex w="100%" justify={"center"} align={"center"}>
-            <Button onClick={() => setIndex((prevIndex) => prevIndex - 1)} disabled={index === 0}><GrPrevious /></Button>
+            <Button  onClick={() => setIndex((prevIndex) => prevIndex - 1)} disabled={index === 0}><GrPrevious /></Button>
             {quizes && quizes[index] && (
                 <Box w="50%">
                     <p>{`Question ${index + 1} of ${totalQuestions}`}</p>
@@ -72,12 +74,15 @@ export default function Quiz() {
             <Flex>
             {quizes[index].incorrect_answers.map((option, idx) => (
                         <Button
+                        bg={feedback===null?"white":feedback==="Correct!"?"green":"red"} 
                             key={idx}
                             onClick={() => handleOptionSelect(option)}
                             disabled={selectedOption !== null}
                         >
                             {option}
                         </Button>))}
+                        <Button  bg={feedback===null?"white":feedback==="Correct!"?"green":"red"}   onClick={() => handleOptionSelect(quizes[index].correct_answer)}
+                            disabled={selectedOption !== null}>{quizes[index].correct_answer}</Button>
             </Flex>
         </Box>
         </Box>
