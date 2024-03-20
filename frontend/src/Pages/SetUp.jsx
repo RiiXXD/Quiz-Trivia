@@ -8,7 +8,9 @@ import {
     Heading,
     Button,
   } from '@chakra-ui/react'
+  import { useNavigate } from 'react-router-dom';
 export default function SetUp(){
+    const navigate=useNavigate();
     const categories=["General Knowledge", "Sports", "Geography"]
     const difficulties=["Easy","Medium","Hard"]
     const[name,setName]=useState("");
@@ -18,7 +20,7 @@ export default function SetUp(){
    
     const handleSubmit=()=>{
         console.log(category,difficulty,category,number);
-        navigate()
+        navigate("/quiz");
     }
     return(
         <Flex w="100%" h="100vh" justify="center" alignItems="center">
