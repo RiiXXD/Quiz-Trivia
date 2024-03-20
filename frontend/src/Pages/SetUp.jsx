@@ -28,8 +28,8 @@ export default function SetUp(){
         console.log(name,difficulty,category,number);
         dispatch(startQuiz(name,difficulty,category,number))
        setTimeout(()=>{
-        console.log(user,quizes)
-       },6000)
+        navigate("/quiz")
+       },3000)
     }
     return(
         <Flex w="100%" h="100vh" justify="center" alignItems="center">
