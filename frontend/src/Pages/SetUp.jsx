@@ -9,8 +9,14 @@ import {
     Button,
   } from '@chakra-ui/react'
   import { useNavigate } from 'react-router-dom';
+  import {useDispatch,useSelector} from "react-redux";
+  import {startQuiz} from "../Redux/action";
 export default function SetUp(){
+    const dispatch = useDispatch();
     const navigate=useNavigate();
+    const user=useSelector((store)=>store.user)
+    const quizes=useSelector((store)=>store.quizes)
+
     const categories=["General Knowledge", "Sports", "Geography"]
     const difficulties=["Easy","Medium","Hard"]
     const[name,setName]=useState("");
@@ -19,8 +25,11 @@ export default function SetUp(){
     const[number,setNumber]=useState(0);
    
     const handleSubmit=()=>{
-        console.log(category,difficulty,category,number);
-        navigate("/quiz");
+        console.log(name,difficulty,category,number);
+        dispatch(startQuiz(name,difficulty,category,number))
+       setTimeout(()=>{
+        console.log(user,quizes)
+       },6000)
     }
     return(
         <Flex w="100%" h="100vh" justify="center" alignItems="center">
